@@ -3,8 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
-
+         :omniauthable, :omniauth_providers => [:facebook, :github]
          def self.from_omniauth(auth)  
            where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
              user.provider = auth.provider
