@@ -1,0 +1,29 @@
+<center><font color='red'>
+<h1>Listing Projects</h1></font>
+ 
+ <% if current_user.present? -%>
+Welcome<br>
+<%= link_to 'New Project', new_project_path %> |
+ <%= link_to "All Tasks", :controller => :project, :action => :show_task %> |
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %> <% end %> 
+ </center>
+<table cellpadding=10 cellspacing=10 align=center>
+  <tr>
+    <th bgcolor='lime'>Title</th>
+    <th bgcolor='lime'>Description</th>
+    <th bgcolor='lime' colspan=3>CRUD</th>
+  </tr>
+ 
+  <% @project.each do |p| %>
+    <tr>
+      <td><%= p.title %></td>
+      <td><%= p.desc %></td>
+      <td><%= link_to 'Show', project_path(p) %></td>
+      <td><%= link_to 'Edit', edit_project_path(p) %></td>
+       <td><%= link_to 'Destroy', project_path(p),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @project %>

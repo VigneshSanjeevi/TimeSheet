@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectTasks</title>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'jquery-3.3.1.js', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <center>
+<% if flash[:alert] %>
+<font color='red'><b><p><%= flash[:alert] %></p></b></font>
+<% end %>
+
+ <% if flash[:notice] %>
+  <font color='blue'><b><p><%= flash[:notice] %></p></b></font>
+<% end %>
+    <%= yield %>
+    </center>
+  </body>
+</html>

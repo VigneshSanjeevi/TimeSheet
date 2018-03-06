@@ -1,0 +1,104 @@
+
+
+<script> 
+
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+   $("#commit").click(function(event){       
+      var sum = 0.0;
+      $('.dur').each(function()
+      {
+        sum += parseFloat(this.value);        
+      });      
+      if(sum>8)
+      {
+        alert("The Duration Time More than 8 hours..Please Check duration Time");
+        event.preventDefault()
+      }
+    });
+});
+
+</script>
+
+<script>
+function myFunction() {
+	var texts = document.getElementsByName('project[tasks_attributes][new_tasks][dur]');
+  alert(texts);  
+    var sum = 0;
+    for( var i = 0; i < texts.length; i ++ ) {
+      var aa=parseFloat(texts[i].value);
+      if(aa=="NaN" || aa==null || aa==""){aa=parseFloat("0");}
+        sum = sum + aa;
+      if(sum > 8)
+      alert("Time Overload");
+    }
+    document.getElementById("sum").innerHTML = sum;
+}
+</script>
+
+<div id="flip"><h1><center>View All Tasks</center></h1></div>
+
+
+<div align='center'>
+
+<%= nested_form_for @project, :url => {:action => "update_all_task", :controller => "project"} do |form| %> 
+<% if @date %>
+<%= date_field(:obj, :date, :value => @date) %>
+<% else %>
+<%= date_field(:obj, :date) %>
+<% end %>
+<% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@project.errors.count, "error") %> prohibited
+        this project from being saved:
+      </h2>
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table id="tasks">
+  <%= form.fields_for :tasks, :wrapper => false do |task_form| %>
+    <tr class="fields">
+    
+    <td><%= task_form.select :project_id, options_for_select(Project.all.map {|t| [ t.title, t.id]}, task_form.object.project_id), include_blank: "Search Project" %></td>
+      <td><%= task_form.text_field :title, placeholder: "Task Title" %></td>
+        <td><%= task_form.text_field :desc, placeholder: "Task Description" %></td>
+        <td><%= task_form.text_field :dur, placeholder: "Task Duration", class: 'dur' %></td>
+      <td><%= task_form.link_to_remove "Remove this task" %></td>
+    </tr>
+  <% end %>
+</table>
+<p><%= form.link_to_add "Add a task", :tasks, :data => { :target => "#tasks" } %></p>
+<%= submit_tag "Add Task", data: { disable_with: "Please wait.." }, id: "commit" %>
+<p><%= link_to 'Back', project_index_path %></p>
+<% end %>
+</div>
+<div id="panel">
+<input id="search" type="text" placeholder="Search the Date..">
+<%= will_paginate @projects %>
+<table cellpadding=5 cellspacing=5 align=center>
+<tr bgcolor='lime'><th>Project Name</th><th>Description</th><th>Tasks</th></tr>
+<% @projects.each do |pro| %>
+<tr><td><%= pro.title %></td>
+<td><%= pro.desc %></td>
+<td><table cellpadding=5 cellspacing=5>
+    <thead><tr bgcolor='skyblue'><th>Date</th><th>Task</th><th>Description</th><th>Duration</th></tr></thead>
+    <tbody id="myTable"><% pro.tasks.each do |tas| %>
+    <tr><td><%= tas.date %></td><td><%= tas.title %></td><td><%=tas.desc %></td><td><%= tas.dur %></td></tr>
+    <% end %></tbody></table>
+    </td>
+  </tr>
+  <% end %>
+  </table>
+  </div>
+
+
