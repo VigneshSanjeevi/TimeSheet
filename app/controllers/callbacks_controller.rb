@@ -1,27 +1,21 @@
 class CallbacksController < Devise::OmniauthCallbacksController
-    def facebook
-    # You need to implement the method below in your model (e.g. app/models/user.rb)
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-
+  def facebook
+    @user = UserProvider.find_for_oauth(request.env["omniauth.auth"])
     if @user.persisted?
-      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
-      set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
-    else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      sign_in_and_redirect @user, :event => :authentication                   
     end
-  end
+end
 
-  def failure
-    redirect_to root_path
+def github  
+  @user = UserProvider.find_for_oauth(request.env["omniauth.auth"])
+  if @user.persisted?
+    sign_in_and_redirect @user, :event => :authentication 
+  end 
+end
+def google_oauth2
+  @user = UserProvider.find_for_oauth(request.env["omniauth.auth"])
+  if @user.persisted?
+    sign_in_and_redirect @user, :event => :authentication  
   end
-  def github
-     @user = User.from_omniauth(request.env["omniauth.auth"])
-     if @user
-       sign_in @user
-       redirect_to root_path
-     else
-       redirect_to new_user_session_path, notice: 'Access Denied.'
-     end
- end
-  end
+end
+end

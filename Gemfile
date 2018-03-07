@@ -9,6 +9,7 @@ gem "nested_form"
 gem 'devise'
 gem 'omniauth-github'
 gem 'will_paginate'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'

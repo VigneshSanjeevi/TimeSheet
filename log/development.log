@@ -20577,3 +20577,1376 @@ Redirected to http://localhost:3000/
 Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
 
 
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 11:21:36 +0530
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 11:21:36 +0530
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1254.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ProjectTasks_development`[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ProjectTasks_test`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (356.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (317.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (16.4ms)[0m  [1m[34mSELECT GET_LOCK('6444461977079486850', 0)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateProjects (20180226095654)
+  [1m[35m (323.5ms)[0m  [1m[35mCREATE TABLE `projects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `desc` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180226095654')[0m
+  [1m[35m (46.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTasks (20180226100311)
+  [1m[35m (323.5ms)[0m  [1m[35mCREATE TABLE `tasks` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `project_id` int, `date` date, `title` varchar(255), `desc` varchar(255), `dur` decimal(4,2), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180226100311')[0m
+  [1m[35m (86.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20180306043618)
+  [1m[35m (367.2ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (287.7ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (289.1ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180306043618')[0m
+  [1m[35m (42.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserProviders (20180307061844)
+  [1m[35m (410.5ms)[0m  [1m[35mCREATE TABLE `user_providers` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint, `provider` varchar(255), `uid` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_user_providers_on_user_id`  (`user_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180307061844')[0m
+  [1m[35m (40.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-03-07 06:24:49', '2018-03-07 06:24:49')[0m
+  [1m[35m (44.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('6444461977079486850')[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-03-07 11:55:03 +0530
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 15ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 11:55:03 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (5.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (36.9ms)
+Completed 200 OK in 342ms (Views: 290.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 11:55:08 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 11:55:09 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 11:56:22 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 84ms (Views: 55.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 11:56:24 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 11:56:24 +0530
+Started GET "/users/auth/facebook/callback?code=AQAOE0lTqlbi1sLHHt1PTDsl8ufwLNIN7mC1Py_Kdeb0lpIExUb5xMHvp8MxlwknUJy7K6JtJY-tD5QVDrDIFSRszLwRGSOBZRQupNKuEXd0LVkUG7QyETP2Kw_PzR94oj0k71JjXfFizKT1g-olbLPyXv2I6U3LwCrfS47pBMJRgrCMkWAKkFRE-16x0mUVy24ClPL_O25zhEBwJ5QOa1nsv1HMt4XNRb8HMCgYz8XjPuWJFu0AeJhBd22QzvDGIA48HOWzpvhWkAWvbq_g0nr2kr9ZltntAz6FgRnZXzopk8aQ8dmv6Ov9qtr-bIssdxPt5mPdwUDYR4wtgpcJAOiX&state=9c9ed6ce15796ef57aa1bf4e00f12a49fedc36d53454a1df" for 127.0.0.1 at 2018-03-07 11:56:40 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQAOE0lTqlbi1sLHHt1PTDsl8ufwLNIN7mC1Py_Kdeb0lpIExUb5xMHvp8MxlwknUJy7K6JtJY-tD5QVDrDIFSRszLwRGSOBZRQupNKuEXd0LVkUG7QyETP2Kw_PzR94oj0k71JjXfFizKT1g-olbLPyXv2I6U3LwCrfS47pBMJRgrCMkWAKkFRE-16x0mUVy24ClPL_O25zhEBwJ5QOa1nsv1HMt4XNRb8HMCgYz8XjPuWJFu0AeJhBd22QzvDGIA48HOWzpvhWkAWvbq_g0nr2kr9ZltntAz6FgRnZXzopk8aQ8dmv6Ov9qtr-bIssdxPt5mPdwUDYR4wtgpcJAOiX", "state"=>"9c9ed6ce15796ef57aa1bf4e00f12a49fedc36d53454a1df"}
+Completed 401 Unauthorized in 34ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `from_omniauth' for #<Class:0x0000562521644528>):
+  
+app/controllers/callbacks_controller.rb:4:in `facebook'
+Started GET "/users/auth/facebook/callback?code=AQAOE0lTqlbi1sLHHt1PTDsl8ufwLNIN7mC1Py_Kdeb0lpIExUb5xMHvp8MxlwknUJy7K6JtJY-tD5QVDrDIFSRszLwRGSOBZRQupNKuEXd0LVkUG7QyETP2Kw_PzR94oj0k71JjXfFizKT1g-olbLPyXv2I6U3LwCrfS47pBMJRgrCMkWAKkFRE-16x0mUVy24ClPL_O25zhEBwJ5QOa1nsv1HMt4XNRb8HMCgYz8XjPuWJFu0AeJhBd22QzvDGIA48HOWzpvhWkAWvbq_g0nr2kr9ZltntAz6FgRnZXzopk8aQ8dmv6Ov9qtr-bIssdxPt5mPdwUDYR4wtgpcJAOiX&state=9c9ed6ce15796ef57aa1bf4e00f12a49fedc36d53454a1df" for 127.0.0.1 at 2018-03-07 11:58:26 +0530
+Processing by CallbacksController#failure as HTML
+  Parameters: {"code"=>"AQAOE0lTqlbi1sLHHt1PTDsl8ufwLNIN7mC1Py_Kdeb0lpIExUb5xMHvp8MxlwknUJy7K6JtJY-tD5QVDrDIFSRszLwRGSOBZRQupNKuEXd0LVkUG7QyETP2Kw_PzR94oj0k71JjXfFizKT1g-olbLPyXv2I6U3LwCrfS47pBMJRgrCMkWAKkFRE-16x0mUVy24ClPL_O25zhEBwJ5QOa1nsv1HMt4XNRb8HMCgYz8XjPuWJFu0AeJhBd22QzvDGIA48HOWzpvhWkAWvbq_g0nr2kr9ZltntAz6FgRnZXzopk8aQ8dmv6Ov9qtr-bIssdxPt5mPdwUDYR4wtgpcJAOiX", "state"=>"9c9ed6ce15796ef57aa1bf4e00f12a49fedc36d53454a1df"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 11:58:27 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.3ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 83ms (Views: 51.2ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 11:59:00 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 52ms (Views: 50.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 11:59:02 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 11:59:03 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 11:59:21 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.5ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 50ms (Views: 48.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 11:59:23 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 11:59:24 +0530
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('6444461977079486850', 0)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('6444461977079486850')[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1403.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ProjectTasks_development`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (42.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ProjectTasks_test`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (415.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (417.5ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT GET_LOCK('6444461977079486850', 0)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateProjects (20180226095654)
+  [1m[35m (489.3ms)[0m  [1m[35mCREATE TABLE `projects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `desc` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180226095654')[0m
+  [1m[35m (45.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTasks (20180226100311)
+  [1m[35m (400.2ms)[0m  [1m[35mCREATE TABLE `tasks` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `project_id` int, `date` date, `title` varchar(255), `desc` varchar(255), `dur` decimal(4,2), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180226100311')[0m
+  [1m[35m (40.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20180306043618)
+  [1m[35m (435.5ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (364.2ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (276.9ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180306043618')[0m
+  [1m[35m (42.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserProviders (20180307061844)
+  [1m[35m (387.6ms)[0m  [1m[35mCREATE TABLE `user_providers` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint, `provider` varchar(255), `uid` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_user_providers_on_user_id`  (`user_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180307061844')[0m
+  [1m[35m (40.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-03-07 06:31:29', '2018-03-07 06:31:29')[0m
+  [1m[35m (79.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('6444461977079486850')[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:04:31 +0530
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 16ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:04:31 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (6.5ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (36.3ms)
+Completed 200 OK in 321ms (Views: 267.3ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:04:34 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:04:34 +0530
+Started GET "/users/auth/facebook/callback?code=AQAiId7gzNJB9ClS-P8k3dzxDiWgprA3OqZpC1JES-cHemgJjyTtx7s5j_w5ioZwcXAHcf4tuEbZ6iRthY17E2_zDtx2B-u1GbeQItK9k2AxHyY4WXgLk5S19bJUhTzu8D0-nyPM1jxU30Jscs-I3zzqa_dugUB1FmZWfjem1CdT54ZBl5SRBIkXvIZeoiFRqR1AzDTtvnaXfFiYvRQM1DYl3URNs_GaozNkI7fkOY1nB7_2APZo9NAxgFJSKtAHs35lQAWSMRSdkw6NMBAyuJY4RApNK_dUiI90Q7zyvXSaozw9oqLoscqWyAvTHM-d413bDVPJc1jtsZ10TQaBKI0v&state=9e664ba454eeb2f2ad98fb66704b5a7408507938f236783a" for 127.0.0.1 at 2018-03-07 12:04:43 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQAiId7gzNJB9ClS-P8k3dzxDiWgprA3OqZpC1JES-cHemgJjyTtx7s5j_w5ioZwcXAHcf4tuEbZ6iRthY17E2_zDtx2B-u1GbeQItK9k2AxHyY4WXgLk5S19bJUhTzu8D0-nyPM1jxU30Jscs-I3zzqa_dugUB1FmZWfjem1CdT54ZBl5SRBIkXvIZeoiFRqR1AzDTtvnaXfFiYvRQM1DYl3URNs_GaozNkI7fkOY1nB7_2APZo9NAxgFJSKtAHs35lQAWSMRSdkw6NMBAyuJY4RApNK_dUiI90Q7zyvXSaozw9oqLoscqWyAvTHM-d413bDVPJc1jtsZ10TQaBKI0v", "state"=>"9e664ba454eeb2f2ad98fb66704b5a7408507938f236783a"}
+  [1m[36mUserProvider Load (0.6ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'vigneshchavi@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'vigneshchavi@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('vigneshchavi@gmail.com', '$2a$11$ZJQwE8SwHHaU2Cm4BCBZKu9Fb24OXs.D12F3qKG1UKJRHkciKJZ7S', '2018-03-07 06:34:44', '2018-03-07 06:34:44')[0m
+  [1m[35m (78.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 401 Unauthorized in 440ms (ActiveRecord: 85.4ms)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Users must exist):
+  
+app/models/user_provider.rb:23:in `find_for_facebook_oauth'
+app/controllers/callbacks_controller.rb:3:in `facebook'
+Started GET "/users/auth/facebook/callback?code=AQAiId7gzNJB9ClS-P8k3dzxDiWgprA3OqZpC1JES-cHemgJjyTtx7s5j_w5ioZwcXAHcf4tuEbZ6iRthY17E2_zDtx2B-u1GbeQItK9k2AxHyY4WXgLk5S19bJUhTzu8D0-nyPM1jxU30Jscs-I3zzqa_dugUB1FmZWfjem1CdT54ZBl5SRBIkXvIZeoiFRqR1AzDTtvnaXfFiYvRQM1DYl3URNs_GaozNkI7fkOY1nB7_2APZo9NAxgFJSKtAHs35lQAWSMRSdkw6NMBAyuJY4RApNK_dUiI90Q7zyvXSaozw9oqLoscqWyAvTHM-d413bDVPJc1jtsZ10TQaBKI0v&state=9e664ba454eeb2f2ad98fb66704b5a7408507938f236783a" for 127.0.0.1 at 2018-03-07 12:05:55 +0530
+Processing by CallbacksController#failure as HTML
+  Parameters: {"code"=>"AQAiId7gzNJB9ClS-P8k3dzxDiWgprA3OqZpC1JES-cHemgJjyTtx7s5j_w5ioZwcXAHcf4tuEbZ6iRthY17E2_zDtx2B-u1GbeQItK9k2AxHyY4WXgLk5S19bJUhTzu8D0-nyPM1jxU30Jscs-I3zzqa_dugUB1FmZWfjem1CdT54ZBl5SRBIkXvIZeoiFRqR1AzDTtvnaXfFiYvRQM1DYl3URNs_GaozNkI7fkOY1nB7_2APZo9NAxgFJSKtAHs35lQAWSMRSdkw6NMBAyuJY4RApNK_dUiI90Q7zyvXSaozw9oqLoscqWyAvTHM-d413bDVPJc1jtsZ10TQaBKI0v", "state"=>"9e664ba454eeb2f2ad98fb66704b5a7408507938f236783a"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:05:56 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.1ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 92ms (Views: 55.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:06:23 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 52ms (Views: 50.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:06:29 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:06:30 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:15:44 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:15:44 +0530
+Started GET "/users/auth/facebook/callback?code=AQBhZtj6GR64DRtvFIdc9lYvTh-6VqrxsevbNpkBznXT_FOmW2zpSRKx7SHW48WIbfJc6_kjrKLfYg6lRBfOh2vDukPBtybXDOvbnKTfIuPLEmHIKu94RExDUTLKDEztyKC2zmr7CvF34hc5hos0xHm1J-HvmiImU5dd6y57fzlGDBoNPHo6LQbffJ0MGhGrdQPhKt-hpfw_8b0l1RKNQpe6R1Pc2_ZSMfLGq8CeoIeD5zlAprZtEgo50SA3I9qHmYlKQQfQIgjyMj2yymF7zUuyJPFZhtMLD4mbfAgXk-m_p9iBC_FyZBVbq5eHWD_SEmjASJwCnjGFvnq3y7gbZx1T&state=5a4b5ac07ae447ae0fb59b8ad7f750bc768749d998796e4d" for 127.0.0.1 at 2018-03-07 12:15:52 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQBhZtj6GR64DRtvFIdc9lYvTh-6VqrxsevbNpkBznXT_FOmW2zpSRKx7SHW48WIbfJc6_kjrKLfYg6lRBfOh2vDukPBtybXDOvbnKTfIuPLEmHIKu94RExDUTLKDEztyKC2zmr7CvF34hc5hos0xHm1J-HvmiImU5dd6y57fzlGDBoNPHo6LQbffJ0MGhGrdQPhKt-hpfw_8b0l1RKNQpe6R1Pc2_ZSMfLGq8CeoIeD5zlAprZtEgo50SA3I9qHmYlKQQfQIgjyMj2yymF7zUuyJPFZhtMLD4mbfAgXk-m_p9iBC_FyZBVbq5eHWD_SEmjASJwCnjGFvnq3y7gbZx1T", "state"=>"5a4b5ac07ae447ae0fb59b8ad7f750bc768749d998796e4d"}
+  [1m[36mUserProvider Load (2.9ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'vigneshchavi@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `user_providers` (`user_id`, `provider`, `uid`, `created_at`, `updated_at`) VALUES (1, 'facebook', '1991220117794906', '2018-03-07 06:45:53', '2018-03-07 06:45:53')[0m
+  [1m[35m (44.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 06:45:53', `last_sign_in_at` = '2018-03-07 06:45:53', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2018-03-07 06:45:53' WHERE `users`.`id` = 1[0m
+  [1m[35m (43.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 203ms (ActiveRecord: 100.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:15:53 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  Rendered project/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 69ms (Views: 56.5ms | ActiveRecord: 2.4ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 12:17:01 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hXPBtkF7A4iiUkHmOP588eqOoABvq+BFfJJRghu3XI+0KFXFCe/mVUmBm70HLsOrgqW1VhOYoPoqeA/GA2BnOg=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 14ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:17:01 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:17:01 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 58ms (Views: 56.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:17:04 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:17:04 +0530
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:17:29 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:17:29 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.0ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 69ms (Views: 67.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:17:49 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:17:50 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:18:42 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:18:42 +0530
+Started GET "/users/auth/facebook/callback?code=AQC4zz84mTBiwSJa758C1JFY1N0f0G3LfBO2-stydTpYpPXWA0NyLpEpBamdJhvkh_fCYxU_7_AuKMmtHV5wbBeRKJijlpJhlh8nWIln7KGOnpGljN3FVO9LSIE7uPJIoGNcsZrjTvZ4Ver70LVVz3zPElvArqIf7L9n7LChl9IdF_Fuo9WuA3lzISABZWHrMPW5B-N39NQxk35VLNugUVNygx56ld88IwX3Q2F3mNy34H7gY8jZxfX80F0_nl_MxvIJ0w262RITvJ4UdCCrP5fm8ZrHTaBVPuzhd8zbeee7J6QtnruPGHys0sZqI_KG0rKj9VGwWrD3S382bhX0LAWd&state=f602ca162d7a1172dbc9c8bee184106d11c315d8ab1ddc98" for 127.0.0.1 at 2018-03-07 12:18:43 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQC4zz84mTBiwSJa758C1JFY1N0f0G3LfBO2-stydTpYpPXWA0NyLpEpBamdJhvkh_fCYxU_7_AuKMmtHV5wbBeRKJijlpJhlh8nWIln7KGOnpGljN3FVO9LSIE7uPJIoGNcsZrjTvZ4Ver70LVVz3zPElvArqIf7L9n7LChl9IdF_Fuo9WuA3lzISABZWHrMPW5B-N39NQxk35VLNugUVNygx56ld88IwX3Q2F3mNy34H7gY8jZxfX80F0_nl_MxvIJ0w262RITvJ4UdCCrP5fm8ZrHTaBVPuzhd8zbeee7J6QtnruPGHys0sZqI_KG0rKj9VGwWrD3S382bhX0LAWd", "state"=>"f602ca162d7a1172dbc9c8bee184106d11c315d8ab1ddc98"}
+  [1m[36mUserProvider Load (1.0ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 06:48:43', `sign_in_count` = 2, `updated_at` = '2018-03-07 06:48:43' WHERE `users`.`id` = 1[0m
+  [1m[35m (72.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 87ms (ActiveRecord: 75.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:18:43 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  Rendered project/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 37ms (Views: 31.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/project/new" for 127.0.0.1 at 2018-03-07 12:18:53 +0530
+Processing by ProjectController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/new.html.erb within layouts/application
+  Rendered project/new.html.erb within layouts/application (89.7ms)
+Completed 200 OK in 178ms (Views: 127.6ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/project" for 127.0.0.1 at 2018-03-07 12:19:06 +0530
+Processing by ProjectController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pIrk/UEUOXgF19qa34+hXZFvCM4t9grJcy/IlJac4oB3RgRkJGQs6hWgvjROq0Tqn8YNFWZr8UvutfnwXNbSWw==", "project"=>{"title"=>"School Management", "desc"=>"School"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `projects` (`title`, `desc`, `created_at`, `updated_at`) VALUES ('School Management', 'School', '2018-03-07 06:49:06', '2018-03-07 06:49:06')[0m
+  [1m[35m (135.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/project/1
+Completed 302 Found in 144ms (ActiveRecord: 137.7ms)
+
+
+Started GET "/project/1" for 127.0.0.1 at 2018-03-07 12:19:06 +0530
+Processing by ProjectController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` WHERE `projects`.`id` = 1 LIMIT 1[0m
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  `tasks`.* FROM `tasks` WHERE `tasks`.`id` = 1 LIMIT 1[0m
+  Rendering project/show.html.erb within layouts/application
+  Rendered project/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 64ms (Views: 44.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/project/index" for 127.0.0.1 at 2018-03-07 12:19:08 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  Rendered project/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 62ms (Views: 58.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/project/new" for 127.0.0.1 at 2018-03-07 12:19:09 +0530
+Processing by ProjectController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/new.html.erb within layouts/application
+  Rendered project/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 62ms (Views: 57.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/project" for 127.0.0.1 at 2018-03-07 12:19:26 +0530
+Processing by ProjectController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rRDf9L7pgx2S8mIDI03cDH7sZmp5dcH7rdrpeqVSBMV+3D9t25mWj4KFBq2yaTm7cEVjsTLoOnkwQNgebxg0Hg==", "project"=>{"title"=>"Blood Bank", "desc"=>"Save Blood Details"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.7ms)[0m  [1m[32mINSERT INTO `projects` (`title`, `desc`, `created_at`, `updated_at`) VALUES ('Blood Bank', 'Save Blood Details', '2018-03-07 06:49:26', '2018-03-07 06:49:26')[0m
+  [1m[35m (187.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/project/2
+Completed 302 Found in 198ms (ActiveRecord: 192.6ms)
+
+
+Started GET "/project/2" for 127.0.0.1 at 2018-03-07 12:19:27 +0530
+Processing by ProjectController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProject Load (5.8ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` WHERE `projects`.`id` = 2 LIMIT 1[0m
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT  `tasks`.* FROM `tasks` WHERE `tasks`.`id` = 2 LIMIT 1[0m
+  Rendering project/show.html.erb within layouts/application
+  Rendered project/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 60ms (Views: 45.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/project/index" for 127.0.0.1 at 2018-03-07 12:19:28 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (2.1ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  Rendered project/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 60ms (Views: 53.2ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/project/new" for 127.0.0.1 at 2018-03-07 12:19:44 +0530
+Processing by ProjectController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/new.html.erb within layouts/application
+  Rendered project/new.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 51ms (Views: 46.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/project" for 127.0.0.1 at 2018-03-07 12:19:56 +0530
+Processing by ProjectController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yrRLy0MFm81tW9/Ypl6dy4nRuxMJMCPsqohU/K4oljMZeKtSJnWOX30su3Y3enh8h3i+yEKt2G43EmWYZGKm6A==", "project"=>{"title"=>"College Management", "desc"=>"College Details"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO `projects` (`title`, `desc`, `created_at`, `updated_at`) VALUES ('College Management', 'College Details', '2018-03-07 06:49:56', '2018-03-07 06:49:56')[0m
+  [1m[35m (101.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/project/3
+Completed 302 Found in 112ms (ActiveRecord: 103.7ms)
+
+
+Started GET "/project/3" for 127.0.0.1 at 2018-03-07 12:19:56 +0530
+Processing by ProjectController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` WHERE `projects`.`id` = 3 LIMIT 1[0m
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT  `tasks`.* FROM `tasks` WHERE `tasks`.`id` = 3 LIMIT 1[0m
+  Rendering project/show.html.erb within layouts/application
+  Rendered project/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 71ms (Views: 62.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/project/index" for 127.0.0.1 at 2018-03-07 12:19:58 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (13.9ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 70ms (Views: 52.4ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/project/new" for 127.0.0.1 at 2018-03-07 12:19:59 +0530
+Processing by ProjectController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/new.html.erb within layouts/application
+  Rendered project/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 64ms (Views: 61.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/project" for 127.0.0.1 at 2018-03-07 12:20:19 +0530
+Processing by ProjectController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+yEJ0O2+o1tQMnx8JBCzkMpgxYgpA3BC+vbDIlE56fso7elJiM62yUBFGNK1NFYnxMnAU2Kei8BnbPJGm3PZIA==", "project"=>{"title"=>"Online Shopping ", "desc"=>"Shopping Products"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO `projects` (`title`, `desc`, `created_at`, `updated_at`) VALUES ('Online Shopping ', 'Shopping Products', '2018-03-07 06:50:19', '2018-03-07 06:50:19')[0m
+  [1m[35m (353.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/project/4
+Completed 302 Found in 361ms (ActiveRecord: 355.3ms)
+
+
+Started GET "/project/4" for 127.0.0.1 at 2018-03-07 12:20:20 +0530
+Processing by ProjectController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` WHERE `projects`.`id` = 4 LIMIT 1[0m
+  [1m[36mTask Load (1.0ms)[0m  [1m[34mSELECT  `tasks`.* FROM `tasks` WHERE `tasks`.`id` = 4 LIMIT 1[0m
+  Rendering project/show.html.erb within layouts/application
+  Rendered project/show.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 53ms (Views: 45.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/project/index" for 127.0.0.1 at 2018-03-07 12:20:21 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 40ms (Views: 35.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/project/index?page=2" for 127.0.0.1 at 2018-03-07 12:20:51 +0530
+Processing by ProjectController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 3[0m
+  Rendered project/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 63ms (Views: 56.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/project/index?page=1" for 127.0.0.1 at 2018-03-07 12:20:52 +0530
+Processing by ProjectController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 55ms (Views: 46.7ms | ActiveRecord: 3.8ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 12:21:04 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"gtAXyePtgCcaG1tyZM9Xx9n3s3EtGGbtkBu1zc90CQfuPfrmhi/5coWTB/j+xs0MmVlNt0yC10rLnu7pCmSQKw=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:21:04 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:21:04 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 42ms (Views: 40.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:21:07 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:21:08 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:23:56 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 90ms (Views: 58.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:23:58 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:23:59 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:24:45 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.1ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (17.8ms)
+Completed 200 OK in 93ms (Views: 62.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:24:46 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:24:47 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:25:06 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.2ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 68ms (Views: 65.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:25:08 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:25:09 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:33:51 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:33:51 +0530
+Started GET "/users/auth/facebook/callback?code=AQBlLrcf7pB0PMZw82kOlHGMS0jMTJXTm20gAr2T9BO0m1qYibZJkuzReH45FLHs_JpWcDn4cf3kbjPBH809sPFY4vy5vApEh0kZitCJfa-ZwW2HxPX13LO3dF5AU9lxBb3Cr-EggaBPgV023YYbMPW6jK_nZmWwHI4l4-MKN-pW4g6-pogtVrRERSIkU62P9FsX7otQmlf4y20RQIAqCQf8VILUZlN9t5ij-2x1bigclqYkSKqZGahtvvdY_G4ozs_lljOdbW7Dm9KAw2EhDkQnhWf1QmF_QB6Dw6KC22sJTm54rT3dtTcsLgtILf5mnwWOvfQED-AvVy8rwDwF_rZ8&state=bb71983d74aa5b09d4801d9662e151ac71245fb6e00f1007" for 127.0.0.1 at 2018-03-07 12:33:52 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQBlLrcf7pB0PMZw82kOlHGMS0jMTJXTm20gAr2T9BO0m1qYibZJkuzReH45FLHs_JpWcDn4cf3kbjPBH809sPFY4vy5vApEh0kZitCJfa-ZwW2HxPX13LO3dF5AU9lxBb3Cr-EggaBPgV023YYbMPW6jK_nZmWwHI4l4-MKN-pW4g6-pogtVrRERSIkU62P9FsX7otQmlf4y20RQIAqCQf8VILUZlN9t5ij-2x1bigclqYkSKqZGahtvvdY_G4ozs_lljOdbW7Dm9KAw2EhDkQnhWf1QmF_QB6Dw6KC22sJTm54rT3dtTcsLgtILf5mnwWOvfQED-AvVy8rwDwF_rZ8", "state"=>"bb71983d74aa5b09d4801d9662e151ac71245fb6e00f1007"}
+  [1m[36mUserProvider Load (0.6ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 07:03:53', `last_sign_in_at` = '2018-03-07 06:48:43', `sign_in_count` = 3, `updated_at` = '2018-03-07 07:03:53' WHERE `users`.`id` = 1[0m
+  [1m[35m (63.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 123ms (ActiveRecord: 69.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:33:53 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (23.1ms)
+Completed 200 OK in 80ms (Views: 67.3ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:34:13 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (1.2ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 58ms (Views: 51.8ms | ActiveRecord: 2.9ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 12:34:15 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"jm4RhGXB0lXCoIMGRWDlp7W0dTESCr1wjaupD2G9CTD6xJt7WamhSwrYQUNM8Vs+R/bJmgbHrbYVrqfQjXY+aA=="}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 15ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:34:15 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:34:15 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 54ms (Views: 52.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:34:17 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 12:34:17 +0530
+Started GET "/users/auth/facebook/callback?code=AQCj7Vk6CT_huUJ5Cy6JAqfra0PsCtdT-L7FOoRJxLLBD13Jidi92j35M0TimCsDIco48O0_qcgyAnbXDV1UrX3Og8oNuAS4yTREsWN1mLzHBfAV4679owrYS1q1amAvtRgL1CjLkxpWFh5H6g9Er3jhNZBY7iO4reMLlLjfarRepM3TJ2L_Kl8ceKderGet1KXDr2G77UrKCt2JNL9Nk0pAjX2OeIX-XYjaYCw6r75SRmaTLKEPxhhE22kq9K9i0iVCgz3CyHQveL1LmTg64eosumKRhpZue5ELeULIgJqvEiiwUxWNJ6syOZhBwdoa9dUFzoL47TKKX6YGab09xXbc&state=d369367fcded08660aaaf6606e1e7a71b912e1005ece8992" for 127.0.0.1 at 2018-03-07 12:34:36 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQCj7Vk6CT_huUJ5Cy6JAqfra0PsCtdT-L7FOoRJxLLBD13Jidi92j35M0TimCsDIco48O0_qcgyAnbXDV1UrX3Og8oNuAS4yTREsWN1mLzHBfAV4679owrYS1q1amAvtRgL1CjLkxpWFh5H6g9Er3jhNZBY7iO4reMLlLjfarRepM3TJ2L_Kl8ceKderGet1KXDr2G77UrKCt2JNL9Nk0pAjX2OeIX-XYjaYCw6r75SRmaTLKEPxhhE22kq9K9i0iVCgz3CyHQveL1LmTg64eosumKRhpZue5ELeULIgJqvEiiwUxWNJ6syOZhBwdoa9dUFzoL47TKKX6YGab09xXbc", "state"=>"d369367fcded08660aaaf6606e1e7a71b912e1005ece8992"}
+  [1m[36mUserProvider Load (0.8ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '115382442629143' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'mangaleswari.105@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mangaleswari.105@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('mangaleswari.105@gmail.com', '$2a$11$QMTCxeHsOZpCZaaoxRHaJ.H0fGK5JWvRczAlymj7TQaVQkC3VKq8W', '2018-03-07 07:04:37', '2018-03-07 07:04:37')[0m
+  [1m[35m (144.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `user_providers` (`user_id`, `provider`, `uid`, `created_at`, `updated_at`) VALUES (2, 'facebook', '115382442629143', '2018-03-07 07:04:37', '2018-03-07 07:04:37')[0m
+  [1m[35m (111.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2018-03-07 07:04:37', `last_sign_in_at` = '2018-03-07 07:04:37', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 2[0m
+  [1m[35m (48.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 565ms (ActiveRecord: 310.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:34:37 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 55ms (Views: 47.5ms | ActiveRecord: 2.5ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 12:46:13 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"LSYTHFCpSVEYshKfgshugDO76LxqQA7LDpRAEZ4Fn6t9TwnvufBI/W7pgkIxRFX3n/NkO5HmLguqn422IKYWxA=="}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 63ms (ActiveRecord: 21.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 12:46:15 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:46:15 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.0ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 95ms (Views: 92.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:46:16 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.5ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 48ms (Views: 46.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:46:18 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:46:19 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 12:48:04 +0530
+  [1m[35m (21.0ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (172.6ms)
+Completed 200 OK in 688ms (Views: 625.2ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:48:07 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:48:08 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:51:06 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 12:51:07 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:01:58 +0530
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.5ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (81.2ms)
+Completed 200 OK in 414ms (Views: 360.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:02:08 +0530
+Processing by CallbacksController#passthru as HTML
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 404 Not Found in 75ms (Views: 74.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:02:12 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (10.7ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 102ms (Views: 101.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:04:14 +0530
+Processing by CallbacksController#passthru as HTML
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 404 Not Found in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:04:21 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.4ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 59ms (Views: 57.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:08:41 +0530
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.9ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (57.4ms)
+Completed 200 OK in 387ms (Views: 325.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:08:43 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:08:43 +0530
+Started GET "/users/auth/google_oauth2/callback?state=72afd631fa991022dea7c19f2202a9d2c9441ce15a94badd&code=4/AACSzzIlJc6JvL-5rHN-Qr-LNe_Zg4otfmY0YXqT8CLC05QfnW0G6QdNx7mAgLV4b1DNp4_0r8PxtwEJSt1bKQQ" for 127.0.0.1 at 2018-03-07 13:08:46 +0530
+Processing by CallbacksController#google_oauth2 as HTML
+  Parameters: {"state"=>"72afd631fa991022dea7c19f2202a9d2c9441ce15a94badd", "code"=>"4/AACSzzIlJc6JvL-5rHN-Qr-LNe_Zg4otfmY0YXqT8CLC05QfnW0G6QdNx7mAgLV4b1DNp4_0r8PxtwEJSt1bKQQ"}
+  [1m[36mUserProvider Load (0.5ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'google_oauth2' AND `user_providers`.`uid` = '114698035480304956876' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'vigneshchavi@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO `user_providers` (`user_id`, `provider`, `uid`, `created_at`, `updated_at`) VALUES (1, 'google_oauth2', '114698035480304956876', '2018-03-07 07:38:47', '2018-03-07 07:38:47')[0m
+  [1m[35m (71.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 07:38:47', `last_sign_in_at` = '2018-03-07 07:03:53', `sign_in_count` = 4, `updated_at` = '2018-03-07 07:38:47' WHERE `users`.`id` = 1[0m
+  [1m[35m (57.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 259ms (ActiveRecord: 139.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 13:08:47 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (10.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (24.4ms)
+Completed 200 OK in 101ms (Views: 78.9ms | ActiveRecord: 13.5ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 13:12:15 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"+dxC9TBqFCzXCrWysK4C4iifV0WXfSc3rQjGKpHEXWnsls+cRvpOJkXb6uSUjnKI/5boHr7rLWQc42dHbKQ9pA=="}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 36ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 13:12:15 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:12:15 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.7ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 76ms (Views: 73.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:12:17 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:12:18 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:12:43 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 77ms (Views: 74.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:12:45 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:12:45 +0530
+Started GET "/users/auth/google_oauth2/callback?state=5dfb346cb1dcafa6a58ac045d30443ac5c0ba572361e17e5&code=4%2FAAAz0V7FKzTZHl_dVbogKqD6nLMRjONDsoWm4s1CiXuVYaJ8YHxmhM0fbLOMa6EhQEGEjneqIQ2LDw9LMGk0N1s" for 127.0.0.1 at 2018-03-07 13:12:51 +0530
+Processing by CallbacksController#google_oauth2 as HTML
+  Parameters: {"state"=>"5dfb346cb1dcafa6a58ac045d30443ac5c0ba572361e17e5", "code"=>"4/AAAz0V7FKzTZHl_dVbogKqD6nLMRjONDsoWm4s1CiXuVYaJ8YHxmhM0fbLOMa6EhQEGEjneqIQ2LDw9LMGk0N1s"}
+  [1m[36mUserProvider Load (0.6ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'google_oauth2' AND `user_providers`.`uid` = '114698035480304956876' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 07:42:52', `last_sign_in_at` = '2018-03-07 07:38:47', `sign_in_count` = 5, `updated_at` = '2018-03-07 07:42:52' WHERE `users`.`id` = 1[0m
+  [1m[35m (92.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 102ms (ActiveRecord: 94.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 13:12:52 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (5.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (2.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 54ms (Views: 40.8ms | ActiveRecord: 10.1ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 13:13:00 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Qah0/A77fETcvpQo5NXlknyI2lGYPp8R+LY9SbM6N4ILZapirKUrUkXg/RNVUmPgRlOOVPDFyvOHe0sqCD0eIA=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 13:13:00 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:13:00 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 66ms (Views: 64.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:13:05 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:13:06 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:14:23 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 51ms (Views: 49.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:17:39 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 84ms (Views: 44.8ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:17:42 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:17:42 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:17:59 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:18:00 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:18:43 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.0ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 48ms (Views: 47.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:18:45 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 13:18:45 +0530
+Started GET "/users/auth/google_oauth2/callback?state=1dbdf27d015157b515545ee94f7250126ece47400e9e7ac0&code=4%2FAABM4kVra8CURSOvoxFrchUrkyp9LOjvpUKNYHjHpeEcp8Oi9JlqjhZ6wem7xp7_bdbU_3DYgl-RrcGcXcTb00E" for 127.0.0.1 at 2018-03-07 13:19:15 +0530
+Processing by CallbacksController#google_oauth2 as HTML
+  Parameters: {"state"=>"1dbdf27d015157b515545ee94f7250126ece47400e9e7ac0", "code"=>"4/AABM4kVra8CURSOvoxFrchUrkyp9LOjvpUKNYHjHpeEcp8Oi9JlqjhZ6wem7xp7_bdbU_3DYgl-RrcGcXcTb00E"}
+  [1m[36mUserProvider Load (0.5ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'google_oauth2' AND `user_providers`.`uid` = '115508040255239161762' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'mangaleswari.105@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `user_providers` (`user_id`, `provider`, `uid`, `created_at`, `updated_at`) VALUES (2, 'google_oauth2', '115508040255239161762', '2018-03-07 07:49:16', '2018-03-07 07:49:16')[0m
+  [1m[35m (104.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 07:49:16', `sign_in_count` = 2, `updated_at` = '2018-03-07 07:49:16' WHERE `users`.`id` = 2[0m
+  [1m[35m (42.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 197ms (ActiveRecord: 153.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 13:19:16 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (20.4ms)
+Completed 200 OK in 84ms (Views: 72.4ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 13:19:20 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"+WAii8bLGWGmR3y69hTNPUH3g2wjJWL89VDXdbhJilKxCHEM+3HfQORmez+mvSMjeh1nIb3PS6vUwnoyvXDQWw=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 13:19:20 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:19:20 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (7.5ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 57ms (Views: 55.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:21:09 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 43ms (Views: 41.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:21:11 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:21:12 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:21:32 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 55ms (Views: 53.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:21:40 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:21:41 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:28:49 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 62ms (Views: 37.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:29:00 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:29:01 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:30:43 +0530
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.4ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (57.3ms)
+Completed 200 OK in 362ms (Views: 299.8ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:30:45 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:30:46 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:30:58 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.4ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 77ms (Views: 75.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:31:01 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 13:31:02 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 13:33:16 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 56ms (Views: 54.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:14:34 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:14:35 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:30:21 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (5.1ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 126ms (Views: 82.8ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 14:30:24 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 14:30:24 +0530
+Started GET "/users/auth/google_oauth2/callback?state=07be275238b28ea932cc2e9d9732bbd57bce5811bff07756&code=4%2FAABtm0IDlPup6arVMugGpQ8FtEj2RN38en62ZLYMv6eRzm-toJ4RcKFY0dIMvEFO8D0hzec98om8N5bs6u48YJ8" for 127.0.0.1 at 2018-03-07 14:30:31 +0530
+Processing by CallbacksController#google_oauth2 as HTML
+  Parameters: {"state"=>"07be275238b28ea932cc2e9d9732bbd57bce5811bff07756", "code"=>"4/AABtm0IDlPup6arVMugGpQ8FtEj2RN38en62ZLYMv6eRzm-toJ4RcKFY0dIMvEFO8D0hzec98om8N5bs6u48YJ8"}
+  [1m[36mUserProvider Load (0.4ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'google_oauth2' AND `user_providers`.`uid` = '114698035480304956876' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 09:00:33', `last_sign_in_at` = '2018-03-07 07:42:52', `sign_in_count` = 6, `updated_at` = '2018-03-07 09:00:33' WHERE `users`.`id` = 1[0m
+  [1m[35m (82.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 137ms (ActiveRecord: 85.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:30:33 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 80ms (Views: 66.7ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 14:30:38 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"uWOaj0e2MK8xij885jFNSp0kUneX+rBpWoC6GDa07khuB0AP+kTJyodMbcNDkAGOhC4cZaLaLtYEn3e/G96Skw=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 18ms (ActiveRecord: 9.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:30:39 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:30:39 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 60ms (Views: 57.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:30:42 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:30:43 +0530
+Started GET "/users/auth/facebook/callback?code=AQAdzFQfvU2ulGHflBl7kBmnpAeebs-1PWpuMZhEvKZYx-NIb54W3K2RyrTJbqdhk9WSV__HPR-lGry7-Yu2LD7rf8LY9GYYPdHc_T_b6eIh1XzWtbNce5acaeQzTix8wc4nGZ1ClZJYqzvnrihHWGjBAX7VsBtoCtpDV2Cq86nd3jR5l8Fc0OXTW5n2AGnoB2SREUVtGfndi1TH1W1-LiBS_HRSY2TwLlWgwKzte_sNfoYpNOW8HBA3ua8qi4PjWVXN7yTw27iJnnHs2CIPyC8Q2FXUe71FM7vLMUSennHlNuX2riQQh1PMqInHCLe4b7no_BOcy2Yg2O7Gg8LkmR0M&state=e5d3cba8cd4b4eb505e82d9435efbbecb96b97bf36ac5eea" for 127.0.0.1 at 2018-03-07 14:30:57 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQAdzFQfvU2ulGHflBl7kBmnpAeebs-1PWpuMZhEvKZYx-NIb54W3K2RyrTJbqdhk9WSV__HPR-lGry7-Yu2LD7rf8LY9GYYPdHc_T_b6eIh1XzWtbNce5acaeQzTix8wc4nGZ1ClZJYqzvnrihHWGjBAX7VsBtoCtpDV2Cq86nd3jR5l8Fc0OXTW5n2AGnoB2SREUVtGfndi1TH1W1-LiBS_HRSY2TwLlWgwKzte_sNfoYpNOW8HBA3ua8qi4PjWVXN7yTw27iJnnHs2CIPyC8Q2FXUe71FM7vLMUSennHlNuX2riQQh1PMqInHCLe4b7no_BOcy2Yg2O7Gg8LkmR0M", "state"=>"e5d3cba8cd4b4eb505e82d9435efbbecb96b97bf36ac5eea"}
+  [1m[36mUserProvider Load (0.7ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 09:00:58', `last_sign_in_at` = '2018-03-07 09:00:33', `sign_in_count` = 7, `updated_at` = '2018-03-07 09:00:58' WHERE `users`.`id` = 1[0m
+  [1m[35m (67.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 78ms (ActiveRecord: 69.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:30:58 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 66ms (Views: 57.7ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 14:31:15 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"uKKs4lWhV8th9MbVj148o0UNtCxLyhXNaF/sBWBHGuIzFnOXj6l0gpS5NFcxVnbJP4KmUoY6Q+seXJP2AwVmHg=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:31:15 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:31:15 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.0ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 68ms (Views: 66.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:31:18 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:31:18 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:43:20 +0530
+  [1m[35m (0.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (55.8ms)
+Completed 200 OK in 388ms (Views: 330.4ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:43:23 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:43:23 +0530
+Started GET "/users/auth/facebook/callback?code=AQCggNAAoaXr7C32jn-jJo5eA7ShpK7b1yPr5xEw5PNTL-1gK0HHrzP5TNP2y4eyzGYz4dxl6IP4TVxj9YTVTMMLhD1E8NnRFD1rKf-SSrnG3rwIZP3lJUWCzLKZYmVbggZRbUqK3neYQc84DofldWDQMJR88UThVBadZNESii6CLwoBbS3xj2sDAyAlKuOlPAsx6YHTgh32muhPh2FZ71qJxaNjdpZiSlCtcWYHQaImx7icxZHvylVeuPfgL2K5n0dGisZB84DXe7dxgweZl7e591VuKEYYEiy36iKdzM-eiqzoqAj1cJ-7A0UOmhDYywQ_m4ShnDR6VnwTK8ni5xVy&state=c89b2c6a57b6eab9b4e8019dceb80a952057c7151b748cc5" for 127.0.0.1 at 2018-03-07 14:43:24 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQCggNAAoaXr7C32jn-jJo5eA7ShpK7b1yPr5xEw5PNTL-1gK0HHrzP5TNP2y4eyzGYz4dxl6IP4TVxj9YTVTMMLhD1E8NnRFD1rKf-SSrnG3rwIZP3lJUWCzLKZYmVbggZRbUqK3neYQc84DofldWDQMJR88UThVBadZNESii6CLwoBbS3xj2sDAyAlKuOlPAsx6YHTgh32muhPh2FZ71qJxaNjdpZiSlCtcWYHQaImx7icxZHvylVeuPfgL2K5n0dGisZB84DXe7dxgweZl7e591VuKEYYEiy36iKdzM-eiqzoqAj1cJ-7A0UOmhDYywQ_m4ShnDR6VnwTK8ni5xVy", "state"=>"c89b2c6a57b6eab9b4e8019dceb80a952057c7151b748cc5"}
+  [1m[36mUserProvider Load (0.5ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 09:13:24', `last_sign_in_at` = '2018-03-07 09:00:58', `sign_in_count` = 8, `updated_at` = '2018-03-07 09:13:24' WHERE `users`.`id` = 1[0m
+  [1m[35m (93.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 144ms (ActiveRecord: 97.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:43:25 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (1.0ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (21.9ms)
+Completed 200 OK in 87ms (Views: 68.3ms | ActiveRecord: 4.7ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 14:44:07 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"+lnzdIpge7NyOoqFEu/EMurw1C08AfIkRuJQT5XoiFTVl6fqXXJZF8eXlLhIix2xK189hdHCpisOnaGHTtbNXw=="}
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 23ms (ActiveRecord: 4.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:44:07 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:44:07 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (6.4ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 87ms (Views: 84.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:44:09 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.2ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 85ms (Views: 83.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:44:11 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:44:11 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 14:44:16 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 14:44:16 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:44:26 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:44:27 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:48:36 +0530
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-03-07 14:48:36 +0530
+Started GET "/users/auth/facebook/callback?code=AQDDw6_jKpHTML34Zy_JucMpm5oR8gJG5ccvV6FgvHuzIDBm3rzAyMF1xkJnR0x66yq46R2Um1FmDgDQKKkaLtLxPaoZDB6b0yQdI5uFUv-jFMZvyfWVlDfRyMWdJOrJO7RaafGYWMOH4m7rbhAkx58Xe3M9Dwje5Z2HzjfKQCoF219AGoQRESjT6839kyaXWRZajkJVpiaJw4nMPgyYercb4KmXNO-tUIu-XRzAyDZ6c_tHJL8FiLJiq1YUmmGyfTRltb-6Bm5ax880MWPhnej7BxvPh2wROIt31nzAYd-99qGlNyJ-j89sIQJ3WgRVN2A7D7eUSd39X_FoY91-ZRoT&state=66adad5bd17d98d7c2cd7f1ecd82fee27e06a519dbfd894f" for 127.0.0.1 at 2018-03-07 14:48:45 +0530
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDDw6_jKpHTML34Zy_JucMpm5oR8gJG5ccvV6FgvHuzIDBm3rzAyMF1xkJnR0x66yq46R2Um1FmDgDQKKkaLtLxPaoZDB6b0yQdI5uFUv-jFMZvyfWVlDfRyMWdJOrJO7RaafGYWMOH4m7rbhAkx58Xe3M9Dwje5Z2HzjfKQCoF219AGoQRESjT6839kyaXWRZajkJVpiaJw4nMPgyYercb4KmXNO-tUIu-XRzAyDZ6c_tHJL8FiLJiq1YUmmGyfTRltb-6Bm5ax880MWPhnej7BxvPh2wROIt31nzAYd-99qGlNyJ-j89sIQJ3WgRVN2A7D7eUSd39X_FoY91-ZRoT", "state"=>"66adad5bd17d98d7c2cd7f1ecd82fee27e06a519dbfd894f"}
+  [1m[36mUserProvider Load (0.5ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'facebook' AND `user_providers`.`uid` = '1991220117794906' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 09:18:45', `last_sign_in_at` = '2018-03-07 09:13:24', `sign_in_count` = 9, `updated_at` = '2018-03-07 09:18:45' WHERE `users`.`id` = 1[0m
+  [1m[35m (54.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 130ms (ActiveRecord: 68.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:48:45 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (23.2ms)
+Completed 200 OK in 72ms (Views: 62.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/project/index?page=2" for 127.0.0.1 at 2018-03-07 14:48:49 +0530
+Processing by ProjectController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (1.4ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 3[0m
+  Rendered project/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 56ms (Views: 49.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/project/index?page=1" for 127.0.0.1 at 2018-03-07 14:48:51 +0530
+Processing by ProjectController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 64ms (Views: 59.4ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 14:48:53 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"vLfaPvB+07o0teFcNc1fNQGVdpbqLE1yskzJtffvZX0Vs7AvPFSurWdgbxgTQhsEzDD1ECfAGqIpQJPYBXDaow=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 14ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:48:53 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:48:53 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (2.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 54ms (Views: 52.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 14:49:02 +0530
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2018-03-07 14:49:02 +0530
+Started GET "/users/auth/google_oauth2/callback?state=5eb7a7cfa82622b2772c3440f32eb3b3f4d28d3d3fdc4c75&code=4%2FAADGTGJWFRPPBur4ew4pYaz7mu1eIujp84zmRzPxDO7gq3oeJk3KJkkrAG_DYJ6eKrxvFbu1T37D3Yo3y6Rnp90" for 127.0.0.1 at 2018-03-07 14:49:09 +0530
+Processing by CallbacksController#google_oauth2 as HTML
+  Parameters: {"state"=>"5eb7a7cfa82622b2772c3440f32eb3b3f4d28d3d3fdc4c75", "code"=>"4/AADGTGJWFRPPBur4ew4pYaz7mu1eIujp84zmRzPxDO7gq3oeJk3KJkkrAG_DYJ6eKrxvFbu1T37D3Yo3y6Rnp90"}
+  [1m[36mUserProvider Load (0.6ms)[0m  [1m[34mSELECT  `user_providers`.* FROM `user_providers` WHERE `user_providers`.`provider` = 'google_oauth2' AND `user_providers`.`uid` = '114698035480304956876' ORDER BY `user_providers`.`id` ASC LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2018-03-07 09:19:10', `last_sign_in_at` = '2018-03-07 09:18:45', `sign_in_count` = 10, `updated_at` = '2018-03-07 09:19:10' WHERE `users`.`id` = 1[0m
+  [1m[35m (87.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 98ms (ActiveRecord: 88.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:49:10 +0530
+Processing by ProjectController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering project/index.html.erb within layouts/application
+  [1m[36mProject Load (1.0ms)[0m  [1m[34mSELECT  `projects`.* FROM `projects` LIMIT 3 OFFSET 0[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `projects`[0m
+  Rendered project/index.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 72ms (Views: 66.8ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-03-07 14:50:08 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"xt2G2vE7qgopl1B3KkL92WpbUMaXgG8JPNtkEUdlbebzx4DpLAhxw6O/UVL5VLIEgTA5LwqajJWKHYx+uuhz6g=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-07 14:50:08 +0530
+Processing by ProjectController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:50:08 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 64ms (Views: 62.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:50:10 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:50:11 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:54:09 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (3.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 36ms (Views: 35.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:54:12 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:54:13 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 14:56:04 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 45ms (Views: 44.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:56:06 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 14:56:07 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 15:04:14 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 94ms (Views: 62.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:04:18 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:04:19 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 15:06:12 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.6ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 111ms (Views: 79.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/password/new" for 127.0.0.1 at 2018-03-07 15:06:31 +0530
+Processing by Devise::PasswordsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/passwords/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/passwords/new.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 58ms (Views: 41.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 15:06:43 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 37ms (Views: 35.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:11:49 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:11:50 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 15:15:22 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 56ms (Views: 53.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 15:15:24 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (9.9ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 62ms (Views: 60.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:15:26 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:15:27 +0530
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-03-07 15:19:08 +0530
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/shared/_links.html.erb (4.8ms)
+  Rendered /home/vignesh/.rvm/gems/ruby-2.5.0/gems/devise-4.4.1/app/views/devise/sessions/new.html.erb within layouts/application (54.6ms)
+Completed 200 OK in 609ms (Views: 553.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:19:10 +0530
+Started GET "/users/auth/github" for 127.0.0.1 at 2018-03-07 15:19:11 +0530
