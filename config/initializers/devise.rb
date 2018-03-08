@@ -9,7 +9,10 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'e19e837088f96f04a8090f541990408a7841e8aa3d1c07a7ad48d53b85a7d2e1cabb4fb00be55447bd77796f807fb443a426c5c27d9287c8c50414ed7664bacc'
-  config.omniauth :github, "88c64d61c6efb630e08c", "15cfeb0b954a31f17042e66a4808e20193a2a909", {scope: "email"}
+ 
+ 
+  config.omniauth :github, "88c64d61c6efb630e08c", "15cfeb0b954a31f17042e66a4808e20193a2a909", {scope: "user:email"}
+  #config.omniauth :github, 'a18358897660e3078aca', '597101155414984800a8e7ff7c327e9330524ef3', :scope => 'user:email' 
   config.omniauth :facebook, "356481588165553", "360dd736f7a30ad40916e432acc5603a", :scope => "email"
   config.omniauth :google_oauth2, '925323046579-e5he1gj1mf56vkd1n6mlmk9oq39o7mgd.apps.googleusercontent.com', 'C-pDG2k3pGW6vcNgtejdt3fP', 
   {scope: "email"}
@@ -229,7 +232,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+   config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
