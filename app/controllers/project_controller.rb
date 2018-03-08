@@ -1,10 +1,15 @@
 class ProjectController < ApplicationController
   before_action :authenticate_user!
   def index
-    @project=Project.paginate(:page => params[:page], :per_page => 3) 
+    @projects=Project.paginate(:page => params[:page], :per_page => 7) 
+    @project=Project.new
   end
 
-  def create       
+  def create  
+    respond_to do |format|
+      format.js
+      format.html
+    end     
     @project=Project.new(project_params)
 	  if @project.save
       redirect_to @project, notice: "Project added successsfully"          
@@ -15,7 +20,7 @@ class ProjectController < ApplicationController
 
   def new
     @project = Project.new   
-   #@project.tasks.build
+    @project.tasks.build
   end
 
   def edit
@@ -33,27 +38,37 @@ class ProjectController < ApplicationController
 
   def update_all_task 
     @projects=Project.paginate(:page => params[:page], :per_page => 3)    
-        @date=params[:obj][:date]       
+        @date=params[:obj][:date]                                    
         val=0
         count=0
-        @tasks=params[:project][:tasks_attributes]
+        valid=0
+        @tasks=params[:project][:tasks_attributes]        
         @tasks.each do |i|
          j=@tasks[i]
-          val+=j["dur"].to_i
+          val+=j["dur"].to_i 
+          if j["title"].blank? || j["dur"].blank?                  
+            valid+=1
+          end
           count+=1
         end   
+         
     rem =8-Task.where(:date => @date).sum("dur") 
-    if val > 8 || val > rem      
+    if val > 8 || val > rem || @date.blank? || valid > 0
       if val > 8               
-         flash[:notice] = "Check the Duration Time.. Maximum 8 hours only accept per day"        
+         flash[:alert] = "Check the Duration Time.. Maximum 8 hours only accept per day"        
       elsif val > rem 
         if rem ==0
-         flash[:notice] = "Already Duration Time Complete for #{@date}"
+         flash[:alert] = "Already Duration Time Complete for #{@date}"
         else
-          flash[:notice] = "#{@date} have Remaining #{rem} hours"
+          flash[:alert] = "#{@date} have Remaining #{rem} hours"
         end
+      elsif @date.blank?
+        flash[:alert] = "Please Select Date"  
+      else
+        flash[:alert] = "Fill Data Correctly"
       end
-      @projects=Project.all
+      
+      @projects=Project.paginate(:page => params[:page], :per_page => 3) 
       @project = Project.new
       count.times {@project.tasks.build}
       count=0
@@ -85,11 +100,13 @@ class ProjectController < ApplicationController
         end      
           redirect_to '/project/show_task'
         end
-    end
+    
+  end
 
   def show_task 
     @task=Task.new
     @project= Project.new
+    #@project.tasks.build
     @projects=Project.paginate(:page => params[:page], :per_page => 3) 
   end
 

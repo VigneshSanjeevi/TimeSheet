@@ -10,7 +10,7 @@ $(document).ready(function(){
     });
   });
    $("#commit").click(function(event){       
-      var sum = 0.0;
+      var sum = 0.0;      
       $('.dur').each(function()
       {
         sum += parseFloat(this.value);        
@@ -21,24 +21,8 @@ $(document).ready(function(){
         event.preventDefault()
       }
     });
+     
 });
-
-</script>
-
-<script>
-function myFunction() {
-	var texts = document.getElementsByName('project[tasks_attributes][new_tasks][dur]');
-  alert(texts);  
-    var sum = 0;
-    for( var i = 0; i < texts.length; i ++ ) {
-      var aa=parseFloat(texts[i].value);
-      if(aa=="NaN" || aa==null || aa==""){aa=parseFloat("0");}
-        sum = sum + aa;
-      if(sum > 8)
-      alert("Time Overload");
-    }
-    document.getElementById("sum").innerHTML = sum;
-}
 </script>
 
 <div id="flip"><h1><center>View All Tasks</center></h1></div>
@@ -70,8 +54,8 @@ function myFunction() {
     <tr class="fields">
     
     <td><%= task_form.select :project_id, options_for_select(Project.all.map {|t| [ t.title, t.id]}, task_form.object.project_id), include_blank: "Search Project" %></td>
-      <td><%= task_form.text_field :title, placeholder: "Task Title" %></td>
-        <td><%= task_form.text_field :desc, placeholder: "Task Description" %></td>
+      <td><%= task_form.text_field :title, placeholder: "Task Title", class: 'title' %></td>
+        <td><%= task_form.text_field :desc, placeholder: "Task Description", class: 'desc' %></td>
         <td><%= task_form.text_field :dur, placeholder: "Task Duration", class: 'dur' %></td>
       <td><%= task_form.link_to_remove "Remove this task" %></td>
     </tr>

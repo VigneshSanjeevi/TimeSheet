@@ -1,0 +1,42 @@
+<%= nested_form_for @project, :url => {:action => "create", :controller => "project"}, :html => {:class => "organizer"}, :remote => true do |form| %> 
+<% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@project.errors.count, "error") %> prohibited
+        this project from being saved:
+      </h2>
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table cellpading=10 cellspacing=10 align='center' bgcolor='skyblue'>
+<tr><th>
+    <%= form.label :Title %></th><td>
+    <%= form.text_field :title %></td></tr>
+  
+ 
+  <tr><th>
+    <%= form.label :Description%></th><td>
+    <%= form.text_area :desc %></td></tr>
+  <tr><td colspan=2>
+  <table id="tasks">
+  <%= form.fields_for :tasks, :wrapper => false do |task_form| %>
+    <tr class="fields">
+    <td><%= task_form.date_field :date %></td>
+      <td><%= task_form.text_field :title, placeholder: "Task Title" %></td>
+       <td><%= task_form.text_field :desc, placeholder: "Task Description" %></td>
+        <td><%= task_form.text_field :dur, placeholder: "Task Duration" %></td>
+      <td><%= task_form.link_to_remove "Remove this task" %></td>
+    </tr>
+  <% end %>
+</table>
+<p><%= form.link_to_add "Add a task", :tasks, :data => { :target => "#tasks" } %></p>
+</td></tr>
+ <tr align="center"><td>
+    <%= form.submit %><td>
+  </tr></table>
+ 
+<% end %>
