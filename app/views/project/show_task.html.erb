@@ -1,7 +1,4 @@
-
-
 <script> 
-
 $(document).ready(function(){
   $("#search").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -20,16 +17,12 @@ $(document).ready(function(){
         alert("The Duration Time More than 8 hours..Please Check duration Time");
         event.preventDefault()
       }
-    });
-     
+    });     
 });
 </script>
 
 <div id="flip"><h1><center>View All Tasks</center></h1></div>
-
-
 <div align='center'>
-
 <%= nested_form_for @project, :url => {:action => "update_all_task", :controller => "project"} do |form| %> 
 <% if @date %>
 <%= date_field(:obj, :date, :value => @date) %>
@@ -56,7 +49,7 @@ $(document).ready(function(){
     <td><%= task_form.select :project_id, options_for_select(Project.all.map {|t| [ t.title, t.id]}, task_form.object.project_id), include_blank: "Search Project" %></td>
       <td><%= task_form.text_field :title, placeholder: "Task Title", class: 'title' %></td>
         <td><%= task_form.text_field :desc, placeholder: "Task Description", class: 'desc' %></td>
-        <td><%= task_form.text_field :dur, placeholder: "Task Duration", class: 'dur' %></td>
+        <td><%= task_form.number_field :dur, placeholder: "Task Duration", class: 'dur', step: :any %></td>
       <td><%= task_form.link_to_remove "Remove this task" %></td>
     </tr>
   <% end %>

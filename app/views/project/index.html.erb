@@ -1,18 +1,4 @@
-<script>
-$(function() {
-  $("#commit").on("click", function(event) {
-    event.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "your_controller_url",
-      data: "your_form_data"
-      success: function(result) {
-        // Append the result to a table or list, $("list").append(result)
-      },
-    });
-  });
-});
-</script>
+
 <center><font color='red'>
 <h1>Time Sheet for Projects</h1></font>
  
@@ -21,7 +7,7 @@ Welcome<br>
 <% if current_user.present? -%>
  <%= link_to "All Tasks", :controller => :project, :action => :show_task %> |
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> <% end %> 
-<center><h1>Create a Project</h1></center>
+<center><h3>Create a Project</h3></center>
 
 <%= render partial: "new" %>
 

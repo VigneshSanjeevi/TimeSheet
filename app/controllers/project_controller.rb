@@ -1,18 +1,14 @@
 class ProjectController < ApplicationController
   before_action :authenticate_user!
   def index
-    @projects=Project.paginate(:page => params[:page], :per_page => 7) 
+    @projects=Project.paginate(:page => params[:page], :per_page => 6) 
     @project=Project.new
   end
 
-  def create  
-    respond_to do |format|
-      format.js
-      format.html
-    end     
+  def create         
     @project=Project.new(project_params)
 	  if @project.save
-      redirect_to @project, notice: "Project added successsfully"          
+      redirect_to root_path, notice: "Project added successsfully"          
 	  else
 	    render 'new'
 	  end
@@ -20,7 +16,7 @@ class ProjectController < ApplicationController
 
   def new
     @project = Project.new   
-    @project.tasks.build
+    #@project.tasks.build
   end
 
   def edit
@@ -120,6 +116,7 @@ class ProjectController < ApplicationController
     @project.destroy  
     redirect_to root_path
   end
+
   private
 		  def project_params
         params.require(:project).permit(:title, :desc, :tasks_attributes => [:id, :project_id, :date, :title, :desc, :dur, :_destroy])

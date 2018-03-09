@@ -1,3 +1,19 @@
+<script>
+$(document).ready(function(){
+   $("#commit").click(function(event){            
+         event.preventDefault(); 
+          $.ajax({
+            type: "post",
+            url: $("form").attr('action'),
+            data: $("form").serialize(),
+            success: function () {
+              
+            }
+          });          
+    });     
+});
+</script>
+
 <%= nested_form_for @project, :url => {:action => "create", :controller => "project"}, :html => {:class => "organizer"}, :remote => true do |form| %> 
 <% if @project.errors.any? %>
     <div id="error_explanation">
@@ -36,7 +52,7 @@
 <p><%= form.link_to_add "Add a task", :tasks, :data => { :target => "#tasks" } %></p>
 </td></tr>
  <tr align="center"><td>
-    <%= form.submit %><td>
+    <%= submit_tag "Create", data: { disable_with: "Please wait.." }, id: "commit" %><td>
   </tr></table>
  
 <% end %>
