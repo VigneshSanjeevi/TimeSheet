@@ -1,9 +1,8 @@
 
-<center><font color='red'>
+<center><font color='lime'>
 <h1>Time Sheet for Projects</h1></font>
- 
- 
-Welcome<br>
+  
+Welcome<br><br>
 <% if current_user.present? -%>
  <%= link_to "All Tasks", :controller => :project, :action => :show_task %> |
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> <% end %> 
@@ -14,7 +13,7 @@ Welcome<br>
 <br>
 
  </center>
-<table cellpadding=10 cellspacing=10 align=center>
+<table cellpadding=10 cellspacing=10 align=center id = "post_table">
   <tr>
     <th bgcolor='lime'>Title</th>
     <th bgcolor='lime'>Description</th>

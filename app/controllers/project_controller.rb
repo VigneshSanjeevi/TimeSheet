@@ -1,17 +1,17 @@
 class ProjectController < ApplicationController
   before_action :authenticate_user!
   def index
-    @projects=Project.paginate(:page => params[:page], :per_page => 6) 
+    @projects=Project.paginate(:page => params[:page], :per_page => 4) 
     @project=Project.new
   end
 
   def create         
     @project=Project.new(project_params)
 	  if @project.save
-      redirect_to root_path, notice: "Project added successsfully"          
-	  else
-	    render 'new'
-	  end
+      render :json => @project
+    else
+      render :json => { :errors => @project.errors.full_messages }, :status => 422
+    end
   end
 
   def new
@@ -89,10 +89,10 @@ class ProjectController < ApplicationController
           :dur => j["dur"]
           )
           if @task.save
-            flash[:notice] = 'Updated'
+            render :json => @project
           else
-            flash[:notice] =' Not Updated'
-          end                        
+            render :json => { :errors => @project.errors.full_messages }, :status => 422
+          end                       
         end      
           redirect_to '/project/show_task'
         end

@@ -6,15 +6,24 @@ $(document).ready(function(){
             type: "post",
             url: $("form").attr('action'),
             data: $("form").serialize(),
-            success: function () {
-              
+            dataType: "json",
+            success: function () 
+            {
+              $("#note").text("Project Sucessfully Added ").css('color', 'green');;
+            },
+            error: function (xhr)
+            {
+                var errors = $.parseJSON(xhr.responseText).errors
+                //document.getElementById("alert").innerHTML = errors;
+                //alert(errors);
+                $("#note").text(" * "+errors).css('color', 'red');;
             }
           });          
     });     
 });
 </script>
-
-<%= nested_form_for @project, :url => {:action => "create", :controller => "project"}, :html => {:class => "organizer"}, :remote => true do |form| %> 
+<p id="note"></p>
+<%= nested_form_for @project, :url => {:action => "create", :controller => "project"}, :html => {:class => "organizer"} do |form| %> 
 <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -31,7 +40,7 @@ $(document).ready(function(){
   <table cellpading=10 cellspacing=10 align='center' bgcolor='skyblue'>
 <tr><th>
     <%= form.label :Title %></th><td>
-    <%= form.text_field :title %></td></tr>
+    <%= form.text_field :title, value: params[:title] %></td></tr>
   
  
   <tr><th>
