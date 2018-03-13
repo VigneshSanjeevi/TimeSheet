@@ -35,38 +35,38 @@ class ProjectController < ApplicationController
   def update_all_task        
         @projects=Project.paginate(:page => params[:page], :per_page => 3)    
         @date=params[:obj][:date] 
-        @tasks=params[:project][:tasks_attributes]          
-        values=Array.new                      
-        @tasks.each do |i|
-            j=@tasks[i]        
-            values << {:project_id => j["project_id"], :date => j["date"], :title => j["title"], :desc => j["desc"], :dur => j["dur"]}                
-        end        
-        val_sum = values.inject(0) {|sum, hash| sum + hash[:dur].to_i} 
-        puts values                                                 
-        puts val_sum                      
+        @project=Project.new
+        @task=params[:project][:tasks_attributes].values       
+        val = JSON.parse(params[:project][:tasks_attributes].to_json)                
+        value =Array.new                         
+        value=val.values.each { |k| k.delete "_destroy" }                                                                         
+        val_sum = value.inject(0) {|sum, hash| sum + hash["dur"].to_i}                                           
         rem =8-Task.where(:date => @date).sum("dur")            
         if val_sum > rem 
           if rem == 0
             render :json => { :errors => "Already Duration Time Complter for #{@date}" }, :status => 422         
-          else
+          else 
             render :json => { :errors => "#{@date} have Remanining #{rem} hours" }, :status => 422           
           end                                 
-        else      
-        Task.transaction do   
-          if Task.create(values)
-            @flag=1          
-          end      
-        end
-          if @flag==1
-            render :json => @project        
-          else
-            render :json => { :errors => @task.errors.full_messages }, :status => 422       
-          end                          
+        else           
+          begin                                     
+            #if value.map {|tax| @t=Task.new(tax).save!}
+            #@tasks=params.require(:project).permit(:tasks_attributes => [:project_id, :date, :title, :desc, :dur])                                  
+            #puts @t.values                    
+            # @ta=Task.create!(value)         
+            # if @ta         
+            #   render :json => @ta 
+            # else
+            #   render :json => { :errors => @ta.errors.full_messages }, :status => 422
+            # end                
+            Task.create!(value)                                                   
+          rescue ActiveRecord::RecordInvalid => invalid            
+            render :json => { :errors => invalid.record.errors.full_messages }, :status => 422
+          end                     
         end    
   end
 
-  def show_task 
-    @task=Task.new
+  def show_task     
     @project= Project.new
     #@project.tasks.build
     @projects=Project.paginate(:page => params[:page], :per_page => 3) 
@@ -86,8 +86,8 @@ class ProjectController < ApplicationController
   private
 		  def project_params
         params.require(:project).permit(:title, :desc, :tasks_attributes => [:id, :project_id, :date, :title, :desc, :dur, :_destroy])
-      end  
+      end 
       def task_params
-        params.require(:task).permit(:project_id, :date, :title, :desc, :dur, :_destroy)
-      end      
+        params.require(:project[:tasks_attributes]).permit(:project_id, :date, :title, :desc, :dur)
+      end               
 end

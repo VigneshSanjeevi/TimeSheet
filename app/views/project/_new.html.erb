@@ -11,18 +11,23 @@ $(document).ready(function(){
             {
               $("#note").text("Project Sucessfully Added ").css('color', 'green');;
             },
-            error: function (xhr)
-            {
-                var errors = $.parseJSON(xhr.responseText).errors
-                //document.getElementById("alert").innerHTML = errors;
-                //alert(errors);
-                $("#note").text(" * "+errors).css('color', 'red');;
-            }
-          });          
+             error: function(xhr)
+            {              
+              var errors = $.parseJSON(xhr.responseText).errors;
+              var errorText;             
+              errorText = "<center>There were errors with the submission: \n<ul>";
+              for ( error in errors )
+              {
+                errorText += "<li>" + error + ': ' + errors[error] + "</li></center> ";
+              }
+              errorText += "</ul>";             
+              $("#note").html(errorText).css('color','red');              
+            }          
+          });         
     });     
 });
 </script>
-<p id="note"></p>
+<div id="note"></div>
 <%= nested_form_for @project, :url => {:action => "create", :controller => "project"}, :html => {:class => "organizer"} do |form| %> 
 <% if @project.errors.any? %>
     <div id="error_explanation">
