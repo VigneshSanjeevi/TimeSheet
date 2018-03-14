@@ -1,0 +1,19 @@
+<div id="panel">
+<input id="search" type="text" placeholder="Search the Date..">
+
+<table cellpadding=5 cellspacing=5 align=center>
+<tr bgcolor='lime'><th>Project Name</th><th>Description</th><th>Tasks</th></tr>
+<% @projects.each do |pro| %>
+<tr><td><%= pro.title %></td>
+<td><%= pro.desc %></td>
+<td><table cellpadding=5 cellspacing=5>
+    <thead><tr bgcolor='skyblue'><th>Date</th><th>Task</th><th>Description</th><th>Duration</th></tr></thead>
+    <tbody id="myTable"><% pro.tasks.each do |tas| %>
+    <tr><td><%= tas.date %></td><td><%= tas.title %></td><td><%=tas.desc %></td><td><%= tas.dur %></td></tr>
+    <% end %></tbody></table>
+    </td>
+  </tr>
+  <% end %>
+  </table>
+  <%= will_paginate @projects %>
+  </div>
