@@ -40,7 +40,11 @@ $(document).ready(function(event){
               {
               $("#note").text(response.success).css('color', 'green');
               $("form")[0].reset();             
-              }             
+              }   
+              // if(response.error)          
+              // {
+              //   $("#note").text(response.error).css('color', 'red');
+              // }
               if(response.project)
               {
                 $("#panel").html(response.project);

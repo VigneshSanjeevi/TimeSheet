@@ -6,5 +6,5 @@ class Project < ApplicationRecord
     validates :desc, presence: true    
     #attr_accessor :tasks_attributes
     validates_associated :tasks
-    validates_presence_of :tasks
+    #validates_presence_of :tasks
 end
